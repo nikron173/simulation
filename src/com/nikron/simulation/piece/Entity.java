@@ -1,4 +1,4 @@
-package com.nikron.simulation;
+package com.nikron.simulation.piece;
 
 import java.util.List;
 

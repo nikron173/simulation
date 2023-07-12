@@ -1,5 +1,8 @@
 package com.nikron.simulation;
 
+import com.nikron.simulation.actions.Actions;
+import com.nikron.simulation.piece.*;
+
 import java.util.List;
 
 public class Simulation {

@@ -1,4 +1,4 @@
-package com.nikron.simulation;
+package com.nikron.simulation.piece;
 
 public class Grass extends Entity {
 

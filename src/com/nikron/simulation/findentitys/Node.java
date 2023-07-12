@@ -1,4 +1,7 @@
-package com.nikron.simulation;
+package com.nikron.simulation.findentitys;
+
+import com.nikron.simulation.Simulation;
+import com.nikron.simulation.piece.Entity;
 
 import java.util.*;
 
@@ -75,15 +78,15 @@ public class Node {
     //T end - конечная точка
     //List<Entity> entities - список всех объектов
     //Class<?> obstacle - имя класса, которое не является препятствием
-    public static <T> List<Node> aStar(T start, T end, List<com.nikron.simulation.Entity> entities, Class<?> obstacle){
+    public static <T> List<Node> aStar(T start, T end, List<Entity> entities, Class<?> obstacle){
         Node startNode = null;
         Node endNode = null;
 
-        if (start instanceof com.nikron.simulation.Entity
-                && end instanceof com.nikron.simulation.Entity) {
-            com.nikron.simulation.Entity st =  (com.nikron.simulation.Entity) start;
+        if (start instanceof Entity
+                && end instanceof Entity) {
+            Entity st =  (Entity) start;
             startNode = new Node(st.getX(), st.getY());
-            com.nikron.simulation.Entity ed = (com.nikron.simulation.Entity) end;
+            Entity ed = (Entity) end;
             endNode = new Node(ed.getX(), ed.getY());
         }
 
@@ -113,10 +116,10 @@ public class Node {
                     int y = currentNode.y + dy;
 
                     if (x < 0 || x >= Simulation.width || y < 0 || y >= Simulation.height) continue;
-                    com.nikron.simulation.Entity tmp;
+                    Entity tmp;
                     //все является препятствием, кто переданного класса
-                    if ((tmp = com.nikron.simulation.Entity.findMapEntity(entities, x, y)) != null && !(obstacle.isInstance(tmp))) continue;
-                    //if ((com.nikron.simulation.Entity.findMapEntity(entities, x, y)) != null) continue;
+                    if ((tmp = Entity.findMapEntity(entities, x, y)) != null && !(obstacle.isInstance(tmp))) continue;
+                    //if ((com.nikron.simulation.piece.Entity.findMapEntity(entities, x, y)) != null) continue;
                     neighbors.add(new Node(x, y));
                 }
             }

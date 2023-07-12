@@ -1,4 +1,7 @@
-package com.nikron.simulation;
+package com.nikron.simulation.actions;
+
+import com.nikron.simulation.*;
+import com.nikron.simulation.piece.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,6 @@
-package com.nikron.simulation;
+package com.nikron.simulation.piece;
+
+import com.nikron.simulation.findentitys.Node;
 
 import java.util.List;
 

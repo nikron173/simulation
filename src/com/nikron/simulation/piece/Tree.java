@@ -1,4 +1,6 @@
-package com.nikron.simulation;
+package com.nikron.simulation.piece;
+
+import com.nikron.simulation.piece.Entity;
 
 public class Tree extends Entity {
 
