@@ -3,28 +3,18 @@ package com.nikron.simulation.piece;
 import java.util.List;
 
 public abstract class Entity {
-    private int x;
-    private int y;
+    private Coordinates coordinates;
 
-    public Entity(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Entity(Coordinates coordinates){
+        this.coordinates = coordinates;
     }
 
-    public int getX() {
-        return x;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     //находит по координатам x и y объект entity, если такого нет, то возвращает null
