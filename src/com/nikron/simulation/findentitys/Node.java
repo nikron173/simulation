@@ -1,7 +1,8 @@
 package com.nikron.simulation.findentitys;
 
 import com.nikron.simulation.Simulation;
-import com.nikron.simulation.piece.Entity;
+import com.nikron.simulation.piece.statics.Coordinates;
+import com.nikron.simulation.piece.statics.Entity;
 
 import java.util.*;
 
@@ -78,15 +79,14 @@ public class Node {
     //T end - конечная точка
     //List<Entity> entities - список всех объектов
     //Class<?> obstacle - имя класса, которое не является препятствием
-    public static <T> List<Node> aStar(T start, T end, List<Entity> entities, Class<?> obstacle){
+    public static <T> List<Coordinates> aStar(T start, T end, HashMap<Coordinates, Entity> map, Class<?> obstacle){
         Node startNode = null;
         Node endNode = null;
 
-        if (start instanceof Entity
-                && end instanceof Entity) {
-            Entity st =  (Entity) start;
+        if (start instanceof Coordinates && end instanceof Coordinates) {
+            Coordinates st =  (Coordinates) start;
             startNode = new Node(st.getX(), st.getY());
-            Entity ed = (Entity) end;
+            Coordinates ed = (Coordinates) end;
             endNode = new Node(ed.getX(), ed.getY());
         }
 
@@ -98,11 +98,12 @@ public class Node {
             Node currentNode = queue.poll();
 
             if (currentNode.equals(endNode)) {
-                List<Node> path = new ArrayList<>();
+                List<Coordinates> path = new ArrayList<>();
                 while (currentNode != null) {
-                    path.add(currentNode);
+                    path.add(new Coordinates(currentNode.x, currentNode.y));
                     currentNode = currentNode.parent;
                 }
+                //удаление из пути точки старта - то есть координаты start
                 path.remove(path.size()-1);
                 return path;
             }
@@ -114,12 +115,12 @@ public class Node {
                     if (dx == 0 && dy == 0) continue;
                     int x = currentNode.x + dx;
                     int y = currentNode.y + dy;
-
                     if (x < 0 || x >= Simulation.width || y < 0 || y >= Simulation.height) continue;
+
                     Entity tmp;
                     //все является препятствием, кто переданного класса
-                    if ((tmp = Entity.findMapEntity(entities, x, y)) != null && !(obstacle.isInstance(tmp))) continue;
-                    //if ((com.nikron.simulation.piece.Entity.findMapEntity(entities, x, y)) != null) continue;
+                    if ((tmp = map.get(new Coordinates(x, y))) != null && !(obstacle.isInstance(tmp))) continue;
+
                     neighbors.add(new Node(x, y));
                 }
             }

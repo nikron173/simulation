@@ -1,6 +1,4 @@
-package com.nikron.simulation.piece;
-
-import java.util.List;
+package com.nikron.simulation.piece.statics;
 
 public abstract class Entity {
     private Coordinates coordinates;
